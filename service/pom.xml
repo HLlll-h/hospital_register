@@ -14,6 +14,7 @@
 
     <modules>
         <module>service_user</module>
+        <module>service_hosp</module>
     </modules>
 
     <properties>
@@ -22,14 +23,15 @@
     </properties>
 
     <dependencies>
+        <!--引入model模块的依赖-->
         <dependency>
             <groupId>com.whh.hospital</groupId>
-            <artifactId>service_util</artifactId>
+            <artifactId>model</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.whh.hospital</groupId>
-            <artifactId>model</artifactId>
+            <artifactId>service_util</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--web-->
@@ -53,21 +55,31 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- 服务调用feign -->
+        <!--swagger-->
         <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+
+        <!-- 服务调用feign -->
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
+        </dependency>-->
         <!-- 服务注册中心Nacos -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>
+        </dependency>-->
         <!-- 流量控制Sentinel -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <build>
         <plugins>
