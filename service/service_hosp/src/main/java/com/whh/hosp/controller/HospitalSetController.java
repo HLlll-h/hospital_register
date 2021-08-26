@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Random;
 
 @RestController
+@CrossOrigin//可以允许跨域访问
 @RequestMapping("/admin/hosp/hospitalSet")
 public class HospitalSetController {
 
@@ -36,7 +37,7 @@ public class HospitalSetController {
         return Result.ok(list);
     }
 
-    //测试 删除一条记录---逻辑删除
+    //删除一条记录---逻辑删除
     @DeleteMapping("/{id}")
     public Result deleteById(@PathVariable("id") Integer id){
         boolean flag = hospitalSetService.removeById(id);
@@ -46,7 +47,7 @@ public class HospitalSetController {
         return Result.fail();
     }
 
-    //条件查询带分页
+    //条件查询[支持模糊查询]带分页
     @PostMapping("/findPage/{current}/{limit}")//@RequestBody注解只能使用PostMapping
     public Result findPageHospSet(@PathVariable("current") long current,
                                   @PathVariable("limit") long limit,

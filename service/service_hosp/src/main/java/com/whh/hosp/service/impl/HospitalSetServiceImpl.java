@@ -1,13 +1,16 @@
 package com.whh.hosp.service.impl;
 
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.whh.hosp.dao.HospitalSetDao;
 import com.whh.hosp.model.hosp.HospitalSet;
 import com.whh.hosp.service.HospitalSetService;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class HospitalSetServiceImpl extends ServiceImpl<HospitalSetDao, HospitalSet> implements HospitalSetService {
+
 
 
     //调dao 需autowired注入dao对象  MyBatis-Plus封装完成了  可不写
@@ -16,5 +19,8 @@ public class HospitalSetServiceImpl extends ServiceImpl<HospitalSetDao, Hospital
 
 //    @Resource
 //    private HospitalSetDao hospitalSetDao;
+
+
+
 
 }
