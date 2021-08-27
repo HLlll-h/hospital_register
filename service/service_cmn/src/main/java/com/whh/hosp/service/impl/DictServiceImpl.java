@@ -31,7 +31,7 @@ public class DictServiceImpl extends ServiceImpl<DictDao, Dict> implements DictS
     private DictDao dictDao;
 
     @Override
-//    @Cacheable(value = "dict",keyGenerator = "keyGenerator")//缓存注解  将数据放到redis缓存中
+    @Cacheable(value = "dict",keyGenerator = "keyGenerator")//缓存注解  将数据放到redis缓存中
     public List<Dict> findChildData(Long id) {
         QueryWrapper<Dict> wrapper = new QueryWrapper<>();
         wrapper.eq("parent_id",id);
@@ -56,7 +56,7 @@ public class DictServiceImpl extends ServiceImpl<DictDao, Dict> implements DictS
 
     //导出数据字典
     @Override
-//    @CacheEvict(value = "dict", allEntries=true) //清空缓存内容
+    @CacheEvict(value = "dict", allEntries=true) //清空缓存内容
     public void exportDictData(HttpServletResponse response) {
         //设置下载信息
         response.setContentType("application/vnd.ms-excel");
