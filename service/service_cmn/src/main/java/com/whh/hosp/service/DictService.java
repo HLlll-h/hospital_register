@@ -24,4 +24,14 @@ public interface DictService extends IService<Dict> {
      * excel导入数据字典
      */
     void importDictData(MultipartFile file);
+
+    /**
+     * 根据dict_code和value查询
+     */
+    String getDictName(String dictCode, String value);
+
+    /**
+     * 根据dict_code获取下级节点
+     */
+    List<Dict> findByDictCode(String dictCode);
 }

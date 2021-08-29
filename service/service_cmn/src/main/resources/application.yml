@@ -1,0 +1,42 @@
+#yml配置文件需注意：缩进、冒号后面需加空格！
+server:
+  port: 8202    # 服务端口
+
+
+spring:
+  application:
+    name: service-cmn    # 服务名
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yygh_cmn?serverTimezone=GMT&allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf8
+    username: root
+    password: 123456    # mysql数据库连接
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848     #配置Nacos地址  真服了 又弄半天，properties文件为什么不行？？？
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8       #返回json的全局时间格式
+  redis:
+    host: 192.168.202.134
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: 1
+        max-idle: 5
+        min-idle: 0     #配置redis
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl    #mybatis-plus日志
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

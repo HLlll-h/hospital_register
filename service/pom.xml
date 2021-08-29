@@ -16,7 +16,6 @@
         <module>service_user</module>
         <module>service_hosp</module>
         <module>service_cmn</module>
-        <module>service_gateway</module>
     </modules>
 
     <properties>
@@ -68,15 +67,15 @@
         </dependency>
 
         <!-- 服务调用feign -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- 服务注册中心Nacos -->
-        <!--<dependency>
+        <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- 流量控制Sentinel -->
         <!--<dependency>
             <groupId>com.alibaba.cloud</groupId>

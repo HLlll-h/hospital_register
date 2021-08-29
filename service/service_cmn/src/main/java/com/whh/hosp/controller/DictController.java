@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/cmn/dict")
-@CrossOrigin //解决跨域问题
+//@CrossOrigin //解决跨域问题
 public class DictController {
 
 
@@ -40,6 +40,31 @@ public class DictController {
     public Result importDict(MultipartFile file){
         dictService.importDictData(file);
         return Result.ok();
+    }
+
+
+    //根据dict_code和value查询
+    @GetMapping("/getName/{dictCode}/{value}")
+    public String getName(@PathVariable("dictCode") String dictCode,
+                          @PathVariable("value") String value){
+
+        String dictName = dictService.getDictName(dictCode,value);
+        return dictName;
+    }
+
+    //根据value查询
+    @GetMapping("/getName/{value}")
+    public String getName(@PathVariable("value") String value){
+
+        String dictName = dictService.getDictName("",value);
+        return dictName;
+    }
+
+    //根据dict_code获取下级节点
+    @GetMapping("/findByDictCode/{dictCode}")
+    public Result findByDictCode(@PathVariable("dictCode") String dictCode){
+        List<Dict> list = dictService.findByDictCode(dictCode);
+        return Result.ok(list);
     }
 
 

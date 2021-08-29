@@ -1,6 +1,7 @@
 package com.whh.hosp.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.whh.hosp.dao.DictDao;
@@ -92,6 +93,46 @@ public class DictServiceImpl extends ServiceImpl<DictDao, Dict> implements DictS
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    //根据dict_code和value查询
+    @Override
+    public String getDictName(String dictCode, String value) {
+        //如果dictCode为空，直接根据value查询
+        if(StringUtils.isEmpty(dictCode)){
+            QueryWrapper<Dict> wrapper = new QueryWrapper<>();
+            wrapper.eq("value",value);
+            Dict dict = baseMapper.selectOne(wrapper);
+            return dict.getName();
+        }else {//如果dictCode不为空，根据dictCode和value查询
+            //先根据dictCode查询dict对象 得到dict的id值
+            Dict dict = getDictByDictCode(dictCode);
+            Long parent_id = dict.getId();
+            //根据parent_id和value进行查询
+            Dict findDict = baseMapper.selectOne(new QueryWrapper<Dict>()
+                    .eq("parent_id", parent_id)
+                    .eq("value", value));
+            return findDict.getName();
+        }
+    }
+
+
+    //根据dict_code查询Dict
+    private Dict getDictByDictCode(String dictCode){
+        QueryWrapper<Dict> wrapper = new QueryWrapper<>();
+        wrapper.eq("dict_code",dictCode);
+        Dict dict = baseMapper.selectOne(wrapper);
+        return dict;
+    }
+
+    //根据dict_code获取下级节点
+    @Override
+    public List<Dict> findByDictCode(String dictCode) {
+        //根据dict_code获取对应id
+        Dict dict = getDictByDictCode(dictCode);
+        //获取id子节点
+        List<Dict> childData = findChildData(dict.getId());
+        return childData;
     }
 
 

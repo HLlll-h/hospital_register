@@ -1,0 +1,27 @@
+#yml配置文件需注意：缩进、冒号后面需加空格！
+server:
+  port: 8201    # 服务端口
+
+spring:
+  application:
+    name: service-hosp    # 服务名
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/yygh_hosp?serverTimezone=GMT&allowPublicKeyRetrieval=true&useSSL=false&characterEncoding=utf8
+    username: root
+    password: 123456        # mysql数据库连接
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848    #配置Nacos地址    坑死我了 得改成yaml文件才行
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8       #返回json的全局时间格式
+  data:
+    mongodb:
+      uri: mongodb://192.168.202.134:27017/yygh_hosp    #引入mongoDB
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #mybatis-plus日志
