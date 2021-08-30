@@ -20,3 +20,15 @@ spring:
         id: service-cmn
         uri: lb://service-cmn
         predicates: Path=/*/cmn/**
+      routes[2]:
+        id: service-user
+        uri: lb://service-user
+        predicates: Path=/*/user/**
+      routes[3]:
+        id: service-msm
+        uri: lb://service-msm
+        predicates: Path=/*/msm/**
+      routes[4]:
+        id: service-user
+        uri: lb://service-user
+        predicates: Path=/*/ucenter/**
