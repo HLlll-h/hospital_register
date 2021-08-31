@@ -11,9 +11,7 @@ import lombok.Data;
 import java.util.Date;
 
 /**
- * <p>
- * Patient
- * </p>
+ * yygh_user库patient表
  */
 @Data
 @ApiModel(description = "Patient")

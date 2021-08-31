@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 /**
  * 服务调用
  */
-@FeignClient("service-cmn")//调用service-cmn模块
+@FeignClient(value = "service-cmn")//调用service-cmn模块
 @Repository//防止调用端注入时报错
 public interface DictFeignClient {
 

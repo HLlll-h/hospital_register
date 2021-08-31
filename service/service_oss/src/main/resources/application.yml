@@ -1,0 +1,23 @@
+#yml配置文件需注意：缩进、冒号后面需加空格！
+server:
+  port: 8205    # 服务端口
+
+
+spring:
+  application:
+    name: service-oss    # 服务名
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848     #配置Nacos地址  真服了 又弄半天，properties文件为什么不行？？？
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8       #返回json的全局时间格式
+
+aliyun:
+  oss:
+    endpoint: oss-cn-beijing.aliyuncs.com
+    accessKeyId: LTAI5tSDaQNefdLcYGL5c3hB
+    secret: eB2sSBGjZuna6BG2l1gkMi1kiUXJ5z
+    bucket: hospital-register  #阿里oss文件服务系统
+

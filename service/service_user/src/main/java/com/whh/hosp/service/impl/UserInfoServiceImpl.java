@@ -3,6 +3,7 @@ package com.whh.hosp.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.whh.hosp.dao.UserInfoDao;
+import com.whh.hosp.enums.AuthStatusEnum;
 import com.whh.hosp.exception.YyghException;
 import com.whh.hosp.helper.JwtHelper;
 import com.whh.hosp.model.user.UserInfo;
@@ -13,6 +14,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.whh.hosp.vo.user.UserAuthVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -112,6 +114,23 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoDao, UserInfo> impl
         wrapper.eq("openid",openid);
         UserInfo userInfo = userInfoDao.selectOne(wrapper);
         return userInfo;
+    }
+
+    //用户认证
+    @Override
+    public void userAuth(long userId, UserAuthVo userAuthVo) {
+        //根据用户id查询用户信息
+        UserInfo userInfo = userInfoDao.selectById(userId);
+        //设置认证信息
+        //认证人姓名
+        userInfo.setName(userAuthVo.getName());
+        //其他认证信息
+        userInfo.setCertificatesType(userAuthVo.getCertificatesType());
+        userInfo.setCertificatesNo(userAuthVo.getCertificatesNo());
+        userInfo.setCertificatesUrl(userAuthVo.getCertificatesUrl());
+        userInfo.setAuthStatus(AuthStatusEnum.AUTH_RUN.getStatus());
+        //进行信息更新
+        userInfoDao.updateById(userInfo);
     }
 
 

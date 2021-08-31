@@ -5,6 +5,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+/**
+ *
+ */
 @Data
 @ApiModel(description="会员认证对象")
 public class UserAuthVo {
