@@ -1,4 +1,4 @@
-package com.whh.hosp.controller;
+package com.whh.hosp.api;
 
 
 import com.whh.hosp.model.user.UserInfo;

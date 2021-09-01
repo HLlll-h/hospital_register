@@ -12,6 +12,7 @@
 
     <artifactId>service_client</artifactId>
     <packaging>pom</packaging>
+
     <modules>
         <module>service_cmn_client</module>
     </modules>

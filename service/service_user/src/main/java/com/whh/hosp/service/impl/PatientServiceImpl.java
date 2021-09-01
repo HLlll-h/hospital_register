@@ -32,6 +32,7 @@ public class PatientServiceImpl extends ServiceImpl<PatientDao, Patient> impleme
         wrapper.eq("user_id",userId);
         List<Patient> patientList = patientDao.selectList(wrapper);
         //通过OpenFeign服务调用使用数据字典的表
+        //服务调用不成功 问题未解决
 //        patientList.stream().forEach(item -> {
 //            //其他参数封装
 //            this.packPatient(item);
