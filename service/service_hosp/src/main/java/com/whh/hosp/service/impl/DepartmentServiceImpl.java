@@ -1,6 +1,7 @@
 package com.whh.hosp.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.sun.xml.bind.v2.model.core.ID;
 import com.whh.hosp.model.hosp.Department;
 import com.whh.hosp.repository.DepartmentRepository;
 import com.whh.hosp.service.DepartmentService;
@@ -133,6 +134,13 @@ public class DepartmentServiceImpl implements DepartmentService {
             return department.getDepname();
         }
         return null;
+    }
+
+    //根据科室编号和医院编号查询科室
+    @Override
+    public Department getDepartment(String hoscode, String depcode) {
+        Department department = departmentRepository.getDepartmentByHoscodeAndDepcode(hoscode, depcode);
+        return department;
     }
 
 
