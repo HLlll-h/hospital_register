@@ -22,4 +22,7 @@ public interface OrderService extends IService<OrderInfo> {
 
     //订单详情
     Map<String, Object> show(Long id);
+
+    //取消预约订单
+    Boolean cancelOrder(Long orderId);
 }

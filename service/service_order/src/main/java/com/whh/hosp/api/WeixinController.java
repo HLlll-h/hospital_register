@@ -29,7 +29,7 @@ public class WeixinController {
     }
 
     //查询支付状态
-    @GetMapping("queryPayStatus/{orderId}")
+        @GetMapping("queryPayStatus/{orderId}")
     public Result queryPayStatus(@PathVariable Long orderId) {
         //调用微信接口实现支付状态查询
         Map<String,String> resultMap = weixinService.queryPayStatus(orderId);

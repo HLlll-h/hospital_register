@@ -18,4 +18,7 @@ public interface PaymentService extends IService<PaymentInfo> {
 
     //更新订单状态
     void paySuccess(String out_trade_no, Map<String, String> resultMap);
+
+    //获取支付记录
+    PaymentInfo getPaymentInfo(Long orderId, Integer paymentType);
 }

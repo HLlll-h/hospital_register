@@ -50,6 +50,14 @@ public class OrderApiController {
         return Result.ok(pageModel);
     }
 
+    //取消预约订单
+    @GetMapping("/auth/cancelOrder/{orderId}")
+    public Result cancerOrder(@PathVariable("orderId") Long orderId){
+        Boolean isOrder = orderService.cancelOrder(orderId);
+        return Result.ok(isOrder);
+    }
+
+
 
 
 }
