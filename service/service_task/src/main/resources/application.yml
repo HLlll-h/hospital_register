@@ -1,0 +1,29 @@
+#yml配置文件需注意：缩进、冒号后面需加空格！
+server:
+  port: 8207    # 服务端口
+
+spring:
+  application:
+    name: service-task    # 服务名
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848    #配置Nacos地址    坑死我了 得改成yaml文件才行
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest     #rabbitMQ配置
+
+  redis:
+    host: 192.168.202.135
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: 1
+        max-idle: 5
+        min-idle: 0     #配置redis

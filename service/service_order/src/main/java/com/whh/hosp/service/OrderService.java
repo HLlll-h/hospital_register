@@ -25,4 +25,7 @@ public interface OrderService extends IService<OrderInfo> {
 
     //取消预约订单
     Boolean cancelOrder(Long orderId);
+
+    //就诊通知(就医提醒)
+    void patientTips();
 }
