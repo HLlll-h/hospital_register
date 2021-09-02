@@ -1,0 +1,11 @@
+#yml配置文件需注意：缩进、冒号后面需加空格！
+server:
+  port: 8208    # 服务端口
+
+spring:
+  application:
+    name: service-statistics    # 服务名
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848    #配置Nacos地址    坑死我了 得改成yaml文件才行

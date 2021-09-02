@@ -7,11 +7,13 @@ import com.whh.hosp.model.order.OrderInfo;
 import com.whh.hosp.result.Result;
 import com.whh.hosp.service.OrderService;
 import com.whh.hosp.utils.AuthContextHolder;
+import com.whh.hosp.vo.order.OrderCountQueryVo;
 import com.whh.hosp.vo.order.OrderQueryVo;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/order/orderInfo")
@@ -55,6 +57,12 @@ public class OrderApiController {
     public Result cancerOrder(@PathVariable("orderId") Long orderId){
         Boolean isOrder = orderService.cancelOrder(orderId);
         return Result.ok(isOrder);
+    }
+
+    //获取订单统计数据(用于调用)
+    @PostMapping("/inner/getCountMap")
+    public Map<String, Object> getCountMap(@RequestBody OrderCountQueryVo orderCountQueryVo) {
+        return orderService.getCountMap(orderCountQueryVo);
     }
 
 

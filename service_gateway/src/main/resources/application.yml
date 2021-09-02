@@ -40,3 +40,7 @@ spring:
         id: service-order
         uri: lb://service-order
         predicates: Path=/*/order/**
+      routes[7]:
+        id: service-statistics
+        uri: lb://service-statistics
+        predicates: Path=/*/statistics/**

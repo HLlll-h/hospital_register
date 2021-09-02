@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.whh.hosp.model.order.OrderInfo;
+import com.whh.hosp.vo.order.OrderCountQueryVo;
 import com.whh.hosp.vo.order.OrderQueryVo;
 
 import java.util.Map;
@@ -28,4 +29,9 @@ public interface OrderService extends IService<OrderInfo> {
 
     //就诊通知(就医提醒)
     void patientTips();
+
+    //后台预约统计
+    Map<String,Object> getCountMap(OrderCountQueryVo orderCountQueryVo );
+
+
 }

@@ -42,6 +42,8 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #mybatis-plus日志
+  mapper-locations: classpath:com/whh/hosp/dao/*.xml
+
 
 weixin:
   appid: wx74862e0dfcf69954
