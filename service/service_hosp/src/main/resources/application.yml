@@ -19,9 +19,16 @@ spring:
     time-zone: GMT+8       #返回json的全局时间格式
   data:
     mongodb:
-      uri: mongodb://192.168.202.134:27017/yygh_hosp    #引入mongoDB
+      uri: mongodb://192.168.202.135:27017/yygh_hosp    #引入mongoDB
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest     #rabbitMQ配置
 
 
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #mybatis-plus日志
+

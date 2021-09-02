@@ -9,6 +9,8 @@ import com.whh.hosp.service.HospitalSetService;
 import com.whh.hosp.service.ScheduleService;
 import com.whh.hosp.vo.hosp.DepartmentVo;
 import com.whh.hosp.vo.hosp.HospitalQueryVo;
+import com.whh.hosp.vo.hosp.ScheduleOrderVo;
+import com.whh.hosp.vo.order.SignInfoVo;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.data.domain.Page;
@@ -101,6 +103,23 @@ public class HospitalApiController {
     public Result getSchedule(@PathVariable("scheduleId") String scheduleId) {
         Schedule schedule = scheduleService.getScheduleId(scheduleId);
         return Result.ok(schedule);
+    }
+
+
+    //根据排班id获取预约下单数据
+    @GetMapping("inner/getScheduleOrderVo/{scheduleId}")
+    public ScheduleOrderVo getScheduleOrderVo(
+            @ApiParam(name = "scheduleId", value = "排班id", required = true)
+            @PathVariable("scheduleId") String scheduleId) {
+        return scheduleService.getScheduleOrderVo(scheduleId);
+    }
+
+    //获取医院签名信息
+    @GetMapping("inner/getSignInfoVo/{hoscode}")
+    public SignInfoVo getSignInfoVo(
+            @ApiParam(name = "hoscode", value = "医院code", required = true)
+            @PathVariable("hoscode") String hoscode) {
+        return hospitalSetService.getSignInfoVo(hoscode);
     }
 
 

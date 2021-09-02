@@ -36,3 +36,7 @@ spring:
         id: service-oss
         uri: lb://service-oss
         predicates: Path=/*/oss/**
+      routes[6]:
+        id: service-order
+        uri: lb://service-order
+        predicates: Path=/*/order/**

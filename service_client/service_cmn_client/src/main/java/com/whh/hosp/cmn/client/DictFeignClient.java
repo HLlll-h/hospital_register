@@ -1,4 +1,4 @@
-package com.whh.hosp.client;
+package com.whh.hosp.cmn.client;
 
 
 import org.springframework.cloud.openfeign.FeignClient;

@@ -2,6 +2,8 @@ package com.whh.hosp.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.whh.hosp.dao.ScheduleDao;
 import com.whh.hosp.exception.YyghException;
 import com.whh.hosp.model.hosp.BookingRule;
 import com.whh.hosp.model.hosp.Department;
@@ -13,6 +15,7 @@ import com.whh.hosp.service.DepartmentService;
 import com.whh.hosp.service.HospitalService;
 import com.whh.hosp.service.ScheduleService;
 import com.whh.hosp.vo.hosp.BookingScheduleRuleVo;
+import com.whh.hosp.vo.hosp.ScheduleOrderVo;
 import com.whh.hosp.vo.hosp.ScheduleQueryVo;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
@@ -31,7 +34,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class ScheduleServiceImpl implements ScheduleService {
+public class ScheduleServiceImpl extends ServiceImpl<ScheduleDao, Schedule> implements ScheduleService {
 
     @Resource
     private ScheduleRepository scheduleRepository;
@@ -332,6 +335,58 @@ public class ScheduleServiceImpl implements ScheduleService {
         return packageSchedule(schedule);
     }
 
+    //根据排班id获取预约下单数据
+    @Override
+    public ScheduleOrderVo getScheduleOrderVo(String scheduleId) {
+        ScheduleOrderVo scheduleOrderVo = new ScheduleOrderVo();
+        //获取排班信息
+        Schedule schedule = this.getScheduleId(scheduleId);
+        //Schedule schedule = baseMapper.selectById(scheduleId);
+        if(schedule == null) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        //获取预约规则信息
+        Hospital hospital = hospitalService.getByHoscode(schedule.getHoscode());
+        if(hospital == null) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        BookingRule bookingRule = hospital.getBookingRule();
+        if(bookingRule == null) {
+            throw new YyghException(ResultCodeEnum.PARAM_ERROR);
+        }
+        //把获取的数据放到scheduleOrderVo对象中
+        scheduleOrderVo.setHoscode(schedule.getHoscode());
+        scheduleOrderVo.setHosname(hospitalService.getHospName(schedule.getHoscode()));
+        scheduleOrderVo.setDepcode(schedule.getDepcode());
+        scheduleOrderVo.setDepname(departmentService.getDepName(schedule.getHoscode(), schedule.getDepcode()));
+        scheduleOrderVo.setHosScheduleId(schedule.getHosScheduleId());
+        scheduleOrderVo.setAvailableNumber(schedule.getAvailableNumber());
+        scheduleOrderVo.setTitle(schedule.getTitle());
+        scheduleOrderVo.setReserveDate(schedule.getWorkDate());
+        scheduleOrderVo.setReserveTime(schedule.getWorkTime());
+        scheduleOrderVo.setAmount(schedule.getAmount());
+
+        //退号截止天数（如：就诊前一天为-1，当天为0）
+        int quitDay = bookingRule.getQuitDay();
+        DateTime quitTime = this.getDateTime(new DateTime(schedule.getWorkDate()).plusDays(quitDay).toDate(), bookingRule.getQuitTime());
+        scheduleOrderVo.setQuitTime(quitTime.toDate());
+
+        //预约开始时间
+        DateTime startTime = this.getDateTime(new Date(), bookingRule.getReleaseTime());
+        scheduleOrderVo.setStartTime(startTime.toDate());
+
+        //预约截止时间
+        DateTime endTime = this.getDateTime(new DateTime().plusDays(bookingRule.getCycle()).toDate(), bookingRule.getStopTime());
+        scheduleOrderVo.setEndTime(endTime.toDate());
+
+        //当天停止挂号时间
+        DateTime stopTime = this.getDateTime(new Date(), bookingRule.getStopTime());
+        scheduleOrderVo.setStartTime(startTime.toDate());
+        return scheduleOrderVo;
+    }
+
+
+
     //获取可预约日期分页数据
     private IPage getListDate(int page, int limit, BookingRule bookingRule) {
         //获取当天放号时间  年 月 日 小时 分钟
@@ -373,6 +428,15 @@ public class ScheduleServiceImpl implements ScheduleService {
         String dateTimeString = new DateTime(date).toString("yyyy-MM-dd") + " "+ timeString;
         DateTime dateTime = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm").parseDateTime(dateTimeString);
         return dateTime;
+    }
+
+
+
+    //更新排班信息 用于mp
+    @Override
+    public void update(Schedule schedule) {
+        schedule.setUpdateTime(new Date());
+        scheduleRepository.save(schedule);
     }
 
 

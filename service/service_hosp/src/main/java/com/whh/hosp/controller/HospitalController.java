@@ -1,11 +1,9 @@
 package com.whh.hosp.controller;
 
-import com.whh.hosp.client.DictFeignClient;
 import com.whh.hosp.model.hosp.Hospital;
 import com.whh.hosp.result.Result;
 import com.whh.hosp.service.HospitalService;
 import com.whh.hosp.vo.hosp.HospitalQueryVo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +19,6 @@ public class HospitalController {
     @Resource
     private HospitalService hospitalService;
 
-    @Autowired
-    private DictFeignClient dictFeignClient;
 
 
     //医院列表(条件查询带分页)

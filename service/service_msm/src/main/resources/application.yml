@@ -14,7 +14,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8       #返回json的全局时间格式
   redis:
-    host: 192.168.202.134
+    host: 192.168.202.135
     port: 6379
     database: 0
     timeout: 1800000
@@ -25,9 +25,16 @@ spring:
         max-idle: 5
         min-idle: 0     #配置redis
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest     #rabbitMQ配置
+
 aliyun:
   sms:
     regionId: default
     accessKeyId: LT6I0Y5633pX89qC
     secret: jX8D04Dm12I3gGKj345FYSzu0fq8mT    #阿里云短信服务  没申请 用不了o(╥﹏╥)o
+
 

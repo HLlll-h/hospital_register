@@ -1,7 +1,7 @@
 package com.whh.hosp.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.whh.hosp.client.DictFeignClient;
+import com.whh.hosp.cmn.client.DictFeignClient;
 import com.whh.hosp.model.hosp.Hospital;
 import com.whh.hosp.repository.HospitalRepository;
 import com.whh.hosp.service.HospitalService;

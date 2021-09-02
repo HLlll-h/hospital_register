@@ -3,7 +3,7 @@ package com.whh.hosp.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.whh.hosp.client.DictFeignClient;
+import com.whh.hosp.cmn.client.DictFeignClient;
 import com.whh.hosp.dao.PatientDao;
 import com.whh.hosp.enums.DictEnum;
 import com.whh.hosp.model.user.Patient;

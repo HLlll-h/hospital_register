@@ -47,7 +47,7 @@ public class DictController {
     @GetMapping("/getName/{dictCode}/{value}")
     public String getName(@PathVariable("dictCode") String dictCode,
                           @PathVariable("value") String value){
-
+//        System.out.println("===============================");
         String dictName = dictService.getDictName(dictCode,value);
         return dictName;
     }

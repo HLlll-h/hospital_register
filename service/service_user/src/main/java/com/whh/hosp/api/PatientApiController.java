@@ -59,6 +59,21 @@ public class PatientApiController {
         return Result.ok();
     }
 
+    //根据就诊人id获取就诊人信息(服务调用使用)
+    @GetMapping("/inner/get/{id}")
+    public Patient getPatientOrder(@PathVariable("id") Long id){
+        Patient patient = patientService.getPatientId(id);
+        return patient;
+    }
+
+    //获取就诊人列表(服务调用使用)
+    @GetMapping("/inner/findAll/{userId}")
+    public List<Patient> getAllPatient(@PathVariable("orderId") Long userId) {
+        //一个userId可能有多个Patient
+        List<Patient> list = patientService.findAllUserId(userId);
+        return list;
+    }
+
 
 
 
