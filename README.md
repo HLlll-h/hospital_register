@@ -39,4 +39,4 @@
 
 - ### NUXT服务端渲染技术（基于 Vue.js 的轻量级应用框架，用于项目前台用户系统的模板框架）
 
-- ### 项目前端代码见[https://github.com/HLlll-h/hospital_register_front ]
+- ### [项目前端代码](https://gitee.com/HLlln/hospital_register_front)
