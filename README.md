@@ -33,6 +33,5 @@
 - ### vue-Admin-template（基于vue-element-admin的一套后台管理系统基础模板）
 
 - ### NUXT服务端渲染技术（基于 Vue.js 的轻量级应用框架，用于项目前台用户系统的模板框架）
-- ### 项目前端代码见
 
-[hospital_register_front]: https://github.com/HLlll-h/hospital_register_front
+- ### 项目前端代码见[https://github.com/HLlll-h/hospital_register_front ](hospital_register_front)
