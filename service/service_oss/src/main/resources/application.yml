@@ -17,7 +17,7 @@ spring:
 aliyun:
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    accessKeyId: LTAI5tSDaQNefdLcYGL5c3hB
+    accessKeyId: 
     secret: eB2sSBGjZuna6BG2l1gkMi1kiUXJ5z
     bucket: hospital-register  #阿里oss文件服务系统
 
